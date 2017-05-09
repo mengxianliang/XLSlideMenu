@@ -24,10 +24,10 @@
 //创建方法
 -(instancetype)initWithRootViewController:(UIViewController*)rootViewController;
 //显示主视图
--(void)showRootViewController;
+-(void)showRootViewControllerAnimated:(BOOL)animated;
 //显示左侧菜单
--(void)showLeftViewController;
+-(void)showLeftViewControllerAnimated:(BOOL)animated;
 //显示右侧菜单
--(void)showRightViewController;
+-(void)showRightViewControllerAnimated:(BOOL)animated;
 
 @end

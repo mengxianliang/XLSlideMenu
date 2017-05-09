@@ -31,7 +31,7 @@
     //滑动菜单
     XLSlideMenu *slideMenu = [[XLSlideMenu alloc] initWithRootViewController:rootNav];
     slideMenu.leftViewController = leftVC;
-//    slideMenu.rightViewController = rightVC;
+    slideMenu.rightViewController = rightVC;
     self.window.rootViewController = slideMenu;
     return YES;
 }

@@ -10,6 +10,8 @@
 
 //菜单的显示区域占屏幕宽度的百分比
 static CGFloat MenuWidthScale = 0.8f;
+//遮罩层最高透明度
+static CGFloat MaxCoverAlpha = 0.3;
 
 @interface XLSlideMenu (){
     //记录起始位置
@@ -27,7 +29,6 @@ static CGFloat MenuWidthScale = 0.8f;
         [self addChildViewController:_rootViewController];
         [self.view addSubview:_rootViewController.view];
         [_rootViewController didMoveToParentViewController:self];
-        
     }
     return self;
 }
@@ -39,12 +40,16 @@ static CGFloat MenuWidthScale = 0.8f;
     [_rootViewController.view addGestureRecognizer:pan];
     
     _coverView = [[UIView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:_coverView];
+    _coverView.backgroundColor = [UIColor blackColor];
+    _coverView.alpha = 0;
     _coverView.hidden = true;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+    [_coverView addGestureRecognizer:tap];
+    [_rootViewController.view addSubview:_coverView];
 }
 
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     
     [self updateLeftMenuFrame];
     
@@ -82,11 +87,11 @@ static CGFloat MenuWidthScale = 0.8f;
             //滑动结束后自动归位
         case UIGestureRecognizerStateEnded:
             if (CGRectGetMinX(_rootViewController.view.frame) > self.menuWidth/2) {
-                [self showLeftViewController];
+                [self showLeftViewControllerAnimated:true];
             }else if (CGRectGetMaxX(_rootViewController.view.frame) < self.menuWidth/2 + self.emptyWidth){
-                [self showRightViewController];
+                [self showRightViewControllerAnimated:true];
             }else{
-                [self showRootViewController];
+                [self showRootViewControllerAnimated:true];
             }
             break;
             
@@ -121,59 +126,76 @@ static CGFloat MenuWidthScale = 0.8f;
         [self.view sendSubviewToBack:_rightViewController.view];
         //更新左菜单位置
         [self updateLeftMenuFrame];
+        //更新遮罩层的透明度
+        _coverView.hidden = false;
+        _coverView.alpha = CGRectGetMinX(_rootViewController.view.frame)/self.menuWidth * MaxCoverAlpha;
     }else if (CGRectGetMinX(_rootViewController.view.frame) < 0){
         //显示右菜单
         [self.view sendSubviewToBack:_leftViewController.view];
         //更新右侧菜单的位置
         [self updateRightMenuFrame];
+        //更新遮罩层的透明度
+        _coverView.hidden = false;
+        _coverView.alpha = (1 - CGRectGetMaxX(_rootViewController.view.frame)/self.self.menuWidth) * MaxCoverAlpha;
     }
 }
 
 
+-(void)tap{
+    [self showRootViewControllerAnimated:true];
+}
+
 #pragma mark -
 #pragma mark 显示/隐藏方法
 //显示主视图
--(void)showRootViewController{
-    [UIView animateWithDuration:0.25 animations:^{
+-(void)showRootViewControllerAnimated:(BOOL)animated{
+    
+    [UIView animateWithDuration:[self animationDurationAnimated:animated] animations:^{
         CGRect frame = _rootViewController.view.frame;
         frame.origin.x = 0;
         _rootViewController.view.frame = frame;
+        
         [self updateLeftMenuFrame];
         [self updateRightMenuFrame];
+        
+        _coverView.alpha = 0;
+    }completion:^(BOOL finished) {
+        _coverView.hidden = true;
     }];
 }
 //显示左侧菜单
--(void)showLeftViewController{
+-(void)showLeftViewControllerAnimated:(BOOL)animated{
     if (!_leftViewController) {return;}
     [self.view sendSubviewToBack:_rightViewController.view];
-    [UIView animateWithDuration:0.25 animations:^{
+    _coverView.hidden = false;
+    [UIView animateWithDuration:[self animationDurationAnimated:animated] animations:^{
         _rootViewController.view.center = CGPointMake(_rootViewController.view.bounds.size.width/2 + self.menuWidth, _rootViewController.view.center.y);
         _leftViewController.view.frame = self.view.bounds;
+        _coverView.alpha = MaxCoverAlpha;
     }];
 }
 //显示右侧菜单
--(void)showRightViewController{
+-(void)showRightViewControllerAnimated:(BOOL)animated{
     if (!_rightViewController) {return;}
+    _coverView.hidden = false;
     [self.view sendSubviewToBack:_leftViewController.view];
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:[self animationDurationAnimated:animated] animations:^{
         _rootViewController.view.center = CGPointMake(_rootViewController.view.bounds.size.width/2 - self.menuWidth, _rootViewController.view.center.y);
         _rightViewController.view.frame = self.view.bounds;
+        _coverView.alpha = MaxCoverAlpha;
     }];
 }
 
 #pragma mark -
 #pragma mark 其它方法
-
 //更新左侧菜单位置
 -(void)updateLeftMenuFrame{
     _leftViewController.view.center = CGPointMake((CGRectGetMinX(_rootViewController.view.frame) + self.emptyWidth)/2, _leftViewController.view.center.y);
 }
-
 //更新右侧菜单位置
 -(void)updateRightMenuFrame{
     _rightViewController.view.center = CGPointMake((self.view.bounds.size.width + CGRectGetMaxX(_rootViewController.view.frame) - self.emptyWidth)/2, _rightViewController.view.center.y);
 }
-
 //菜单宽度
 -(CGFloat)menuWidth{
     return MenuWidthScale * self.view.bounds.size.width;
@@ -182,12 +204,14 @@ static CGFloat MenuWidthScale = 0.8f;
 -(CGFloat)emptyWidth{
     return self.view.bounds.size.width - self.menuWidth;
 }
-
+//动画时长
+-(CGFloat)animationDurationAnimated:(BOOL)animated{
+    return animated ? 0.25 : 0;
+}
 //取消自动旋转
 -(BOOL)shouldAutorotate{
     return false;
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

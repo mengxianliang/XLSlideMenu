@@ -6,8 +6,6 @@
 //  Copyright © 2017年 MengXianLiang. All rights reserved.
 //
 
-
-
 #import "XLSlideMenu.h"
 
 static CGFloat MenuWidthScale = 0.8f;
@@ -32,9 +30,6 @@ static CGFloat MenuWidthScale = 0.8f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     [_rootViewController.view addGestureRecognizer:pan];
 }
@@ -42,7 +37,10 @@ static CGFloat MenuWidthScale = 0.8f;
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
-    _leftViewController.view.center = CGPointMake(self.emptyWidth/2, _leftViewController.view.center.y);
+    
+    [self updateLeftMenuFrame];
+    
+    [self updateRightMenuFrame];
 }
 
 #pragma mark -
@@ -81,10 +79,15 @@ static CGFloat MenuWidthScale = 0.8f;
             }
             //判断显示左菜单还是右菜单
             if (CGRectGetMinX(_rootViewController.view.frame) > 0) {
+                //显示左菜单
                 [self.view sendSubviewToBack:_rightViewController.view];
-                _leftViewController.view.center = CGPointMake(CGRectGetMinX(_rootViewController.view.frame)/2 + self.emptyWidth/2, _leftViewController.view.center.y);
+                //更新左菜单位置
+                [self updateLeftMenuFrame];
             }else if (CGRectGetMinX(_rootViewController.view.frame) < 0){
+                //显示右菜单
                 [self.view sendSubviewToBack:_leftViewController.view];
+                //更新右侧菜单的位置
+                [self updateRightMenuFrame];
             }
             break;
         case UIGestureRecognizerStateEnded:
@@ -113,8 +116,8 @@ static CGFloat MenuWidthScale = 0.8f;
         CGRect frame = _rootViewController.view.frame;
         frame.origin.x = 0;
         _rootViewController.view.frame = frame;
-        
-        _leftViewController.view.center = CGPointMake(self.emptyWidth/2, _leftViewController.view.center.y);
+        [self updateLeftMenuFrame];
+        [self updateRightMenuFrame];
     }];
 }
 
@@ -130,11 +133,23 @@ static CGFloat MenuWidthScale = 0.8f;
     [self.view sendSubviewToBack:_leftViewController.view];
     [UIView animateWithDuration:0.25 animations:^{
         _rootViewController.view.center = CGPointMake(_rootViewController.view.bounds.size.width/2 - self.menuWidth, _rootViewController.view.center.y);
+        _rightViewController.view.frame = self.view.bounds;
     }];
 }
 
 #pragma mark -
 #pragma mark 其它方法
+
+//更新左侧菜单位置
+-(void)updateLeftMenuFrame{
+    _leftViewController.view.center = CGPointMake((CGRectGetMinX(_rootViewController.view.frame) + self.emptyWidth)/2, _leftViewController.view.center.y);
+}
+
+//更新右侧菜单位置
+-(void)updateRightMenuFrame{
+    _rightViewController.view.center = CGPointMake((self.view.bounds.size.width + CGRectGetMaxX(_rootViewController.view.frame) - self.emptyWidth)/2, _rightViewController.view.center.y);
+}
+
 //菜单宽度
 -(CGFloat)menuWidth{
     return MenuWidthScale * self.view.bounds.size.width;

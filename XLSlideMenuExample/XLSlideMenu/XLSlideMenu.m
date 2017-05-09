@@ -18,6 +18,8 @@ static CGFloat MaxCoverAlpha = 0.3;
     CGPoint _originalPoint;
     //遮罩view
     UIView *_coverView;
+    //拖拽手势
+    UIPanGestureRecognizer *_pan;
 }
 @end
 
@@ -36,8 +38,8 @@ static CGFloat MaxCoverAlpha = 0.3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-    [_rootViewController.view addGestureRecognizer:pan];
+    _pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    [_rootViewController.view addGestureRecognizer:_pan];
     
     _coverView = [[UIView alloc] initWithFrame:self.view.bounds];
     _coverView.backgroundColor = [UIColor blackColor];
@@ -57,7 +59,7 @@ static CGFloat MaxCoverAlpha = 0.3;
 }
 
 #pragma mark -
-#pragma mark Setter
+#pragma mark Setter&&Getter
 
 -(void)setLeftViewController:(UIViewController *)leftViewController{
     _leftViewController = leftViewController;
@@ -71,6 +73,14 @@ static CGFloat MaxCoverAlpha = 0.3;
     [self addChildViewController:_rightViewController];
     [self.view insertSubview:_rightViewController.view atIndex:0];
     [_rightViewController didMoveToParentViewController:self];
+}
+
+-(void)setSlideEnabled:(BOOL)slideEnabled{
+    _pan.enabled = slideEnabled;
+}
+
+-(BOOL)slideEnabled{
+    return _pan.isEnabled;
 }
 
 #pragma mark -

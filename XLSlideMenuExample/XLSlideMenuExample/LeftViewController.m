@@ -7,7 +7,7 @@
 //
 
 #import "LeftViewController.h"
-#import "UIViewController+XLSlideMenu.h"
+#import "XLSlideMenu.h"
 @interface LeftViewController ()
 
 @end

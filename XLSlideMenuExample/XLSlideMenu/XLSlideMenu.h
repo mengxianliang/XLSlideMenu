@@ -7,12 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef NS_ENUM(NSInteger,XLSlideDirection){
-    XLSlideDirectionNone = 0,
-    XLSlideDirectionLeft = 1,
-    XLSlideDirectionRight = 2,
-};
+#import "UIViewController+XLSlideMenu.h"
 
 @interface XLSlideMenu : UIViewController
 //主视图
@@ -25,9 +20,9 @@ typedef NS_ENUM(NSInteger,XLSlideDirection){
 @property (nonatomic, assign, readonly) CGFloat menuWidth;
 //留白宽度
 @property (nonatomic, assign, readonly) CGFloat emptyWidth;
+
 //创建方法
 -(instancetype)initWithRootViewController:(UIViewController*)rootViewController;
-
 //显示主视图
 -(void)showRootViewController;
 //显示左侧菜单

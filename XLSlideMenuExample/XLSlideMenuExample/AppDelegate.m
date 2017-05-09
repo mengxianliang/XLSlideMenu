@@ -21,22 +21,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //初始化window
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    [self.window makeKeyAndVisible];
-    
-    //设置滑动菜单
+    //主界面
     ViewController *vc = [[ViewController alloc] init];
     UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:vc];
-    
+    //左侧菜单
     LeftViewController *leftVC = [[LeftViewController alloc] init];
+    //右侧菜单
     RightViewController *rightVC = [[RightViewController alloc] init];
-    
+    //滑动菜单
     XLSlideMenu *slideMenu = [[XLSlideMenu alloc] initWithRootViewController:rootNav];
     slideMenu.leftViewController = leftVC;
-    slideMenu.rightViewController = rightVC;
+//    slideMenu.rightViewController = rightVC;
     self.window.rootViewController = slideMenu;
-    
     return YES;
 }
 

@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "XLSlideMenu.h"
-#import "UIViewController+XLSlideMenu.h"
 
 @interface ViewController ()
 
@@ -19,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"左菜单" style:UIBarButtonItemStylePlain target:self action:@selector(showLeft)];
     

@@ -7,7 +7,6 @@
 //
 
 #import "UIViewController+XLSlideMenu.h"
-#import "XLSlideMenu.h"
 
 @implementation UIViewController (XLSlideMenu)
 

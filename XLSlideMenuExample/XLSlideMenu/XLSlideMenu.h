@@ -22,7 +22,9 @@ typedef NS_ENUM(NSInteger,XLSlideDirection){
 //右侧视图
 @property (nonatomic, strong) UIViewController *rightViewController;
 //菜单宽度
-@property (nonatomic, assign, readonly) CGFloat menuViewWidth;
+@property (nonatomic, assign, readonly) CGFloat menuWidth;
+//留白宽度
+@property (nonatomic, assign, readonly) CGFloat emptyWidth;
 //创建方法
 -(instancetype)initWithRootViewController:(UIViewController*)rootViewController;
 

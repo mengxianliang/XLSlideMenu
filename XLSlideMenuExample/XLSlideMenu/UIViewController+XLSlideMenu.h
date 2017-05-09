@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XLSlideMenu;
+#import "XLSlideMenu.h"
 
 @interface UIViewController (XLSlideMenu)
 

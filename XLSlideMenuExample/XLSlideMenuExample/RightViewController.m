@@ -7,6 +7,7 @@
 //
 
 #import "RightViewController.h"
+#import "UIViewController+XLSlideMenu.h"
 
 @interface RightViewController ()
 
@@ -18,6 +19,10 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blueColor];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.xl_sldeMenu.emptyWidth, 0, self.xl_sldeMenu.menuWidth, self.view.bounds.size.height)];
+    imageView.image = [UIImage imageNamed:@"QQLeftMenu"];
+    [self.view addSubview:imageView];
 }
 
 - (void)didReceiveMemoryWarning {

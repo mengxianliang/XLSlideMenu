@@ -18,6 +18,9 @@
 		5EA480251EC0711E00291174 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA480241EC0711E00291174 /* RightViewController.m */; };
 		5EA480281EC0733300291174 /* UIViewController+XLSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA480271EC0733300291174 /* UIViewController+XLSlideMenu.m */; };
 		5EA4802A1EC15AB000291174 /* QQLeftMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA480291EC15AB000291174 /* QQLeftMenu.png */; };
+		5EB25D811EC286E4000CE892 /* QQChatList.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D801EC286E4000CE892 /* QQChatList.png */; };
+		5EB25D831EC2878E000CE892 /* navbarBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D821EC2878E000CE892 /* navbarBackImage.png */; };
+		5EB25D851EC28BCB000CE892 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D841EC28BCB000CE892 /* header.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		5EA480261EC0733300291174 /* UIViewController+XLSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XLSlideMenu.h"; sourceTree = "<group>"; };
 		5EA480271EC0733300291174 /* UIViewController+XLSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XLSlideMenu.m"; sourceTree = "<group>"; };
 		5EA480291EC15AB000291174 /* QQLeftMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QQLeftMenu.png; sourceTree = "<group>"; };
+		5EB25D801EC286E4000CE892 /* QQChatList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QQChatList.png; sourceTree = "<group>"; };
+		5EB25D821EC2878E000CE892 /* navbarBackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbarBackImage.png; sourceTree = "<group>"; };
+		5EB25D841EC28BCB000CE892 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 		5EA480041EC06C6200291174 /* XLSlideMenuExample */ = {
 			isa = PBXGroup;
 			children = (
+				5EB25D841EC28BCB000CE892 /* header.png */,
+				5EB25D821EC2878E000CE892 /* navbarBackImage.png */,
+				5EB25D801EC286E4000CE892 /* QQChatList.png */,
 				5EA480291EC15AB000291174 /* QQLeftMenu.png */,
 				5EA480081EC06C6200291174 /* AppDelegate.h */,
 				5EA480091EC06C6200291174 /* AppDelegate.m */,
@@ -171,8 +180,11 @@
 			files = (
 				5EA480151EC06C6200291174 /* LaunchScreen.storyboard in Resources */,
 				5EA480121EC06C6200291174 /* Assets.xcassets in Resources */,
+				5EB25D831EC2878E000CE892 /* navbarBackImage.png in Resources */,
 				5EA480101EC06C6200291174 /* Main.storyboard in Resources */,
 				5EA4802A1EC15AB000291174 /* QQLeftMenu.png in Resources */,
+				5EB25D851EC28BCB000CE892 /* header.png in Resources */,
+				5EB25D811EC286E4000CE892 /* QQChatList.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

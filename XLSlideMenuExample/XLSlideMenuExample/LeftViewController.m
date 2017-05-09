@@ -22,8 +22,6 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.xl_sldeMenu.menuWidth, self.view.bounds.size.height)];
     imageView.image = [UIImage imageNamed:@"QQLeftMenu"];
     [self.view addSubview:imageView];
-    
-    [self.navigationController pushViewController:nil animated:true];
 }
 
 - (void)didReceiveMemoryWarning {

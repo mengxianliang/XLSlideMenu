@@ -9,9 +9,8 @@
 #import "ViewController.h"
 #import "XLSlideMenu.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    UITableView *_tableView;
-}
+@interface ViewController ()
+
 @end
 
 @implementation ViewController
@@ -20,43 +19,22 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"消息";
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"左菜单" style:UIBarButtonItemStylePlain target:self action:@selector(showLeft)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"右菜单" style:UIBarButtonItemStylePlain target:self action:@selector(showRight)];
+    UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
+    headerImageView.layer.cornerRadius = headerImageView.bounds.size.width/2.0f;
+    headerImageView.layer.masksToBounds = true;
+    headerImageView.image = [UIImage imageNamed:@"header"];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLeft)];
+    [headerImageView addGestureRecognizer:tap];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:headerImageView];
     
-    [self buildTable];
-}
-
--(void)buildTable
-{
-    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    [self.view addSubview:_tableView];
-}
-
-#pragma mark -
-#pragma mark TableViewDelegate&DataSource
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 50;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 10;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString* cellIdentifier = @"cell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    return cell;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showRight)];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
+    imageView.image = [UIImage imageNamed:@"QQChatList"];
+    [self.view addSubview:imageView];
 }
 
 -(void)showLeft{

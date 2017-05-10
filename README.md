@@ -7,7 +7,7 @@
 
 ## 显示效果
 
-![image](https://github.com/mengxianliang/XLSlideMenu/blob/master/GIF/1.gif)
+<img src="https://github.com/mengxianliang/XLSlideMenu/blob/master/GIF/1.gif" width=300 height=538 />
 
 ## 使用方法
 

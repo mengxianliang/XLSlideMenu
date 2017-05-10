@@ -4,7 +4,7 @@
 //
 //  Created by MengXianLiang on 2017/5/8.
 //  Copyright © 2017年 MengXianLiang. All rights reserved.
-//
+//  GitHub:https://github.com/mengxianliang/XLSlideMenu
 
 #import "UIViewController+XLSlideMenu.h"
 #import "XLSlideMenu.h"

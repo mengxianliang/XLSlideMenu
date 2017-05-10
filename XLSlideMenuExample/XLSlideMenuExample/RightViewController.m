@@ -4,7 +4,7 @@
 //
 //  Created by MengXianLiang on 2017/5/8.
 //  Copyright © 2017年 MengXianLiang. All rights reserved.
-//
+//  GitHub:https://github.com/mengxianliang/XLSlideMenu
 
 #import "RightViewController.h"
 #import "RightCollectionViewCell.h"
@@ -98,7 +98,6 @@
         UIViewController *vc = [[UIViewController alloc] init];
         vc.title = @"ViewController";
         vc.view.backgroundColor = [UIColor whiteColor];
-        
         //获取RootViewController
         UINavigationController *nav = (UINavigationController*)self.xl_sldeMenu.rootViewController;
         [nav pushViewController:vc animated:false];

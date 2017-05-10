@@ -23,9 +23,11 @@
     
     //主界面
     ViewController *vc = [[ViewController alloc] init];
+    //配置NavigationBar
     UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:vc];
     [rootNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbarBackImage"] forBarMetrics:UIBarMetricsDefault];
     rootNav.navigationBar.tintColor = [UIColor whiteColor];
+    [rootNav.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
     //左侧菜单
     LeftViewController *leftVC = [[LeftViewController alloc] init];
     //右侧菜单

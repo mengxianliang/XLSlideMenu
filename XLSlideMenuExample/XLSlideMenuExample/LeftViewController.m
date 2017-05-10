@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor yellowColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.xl_sldeMenu.menuWidth, self.view.bounds.size.height)];
     imageView.image = [UIImage imageNamed:@"QQLeftMenu"];

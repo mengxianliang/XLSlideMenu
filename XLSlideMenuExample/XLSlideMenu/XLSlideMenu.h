@@ -22,7 +22,6 @@
 @property (nonatomic, assign, readonly) CGFloat emptyWidth;
 //是否允许滚动
 @property (nonatomic ,assign) BOOL slideEnabled;
-
 //创建方法
 -(instancetype)initWithRootViewController:(UIViewController*)rootViewController;
 //显示主视图

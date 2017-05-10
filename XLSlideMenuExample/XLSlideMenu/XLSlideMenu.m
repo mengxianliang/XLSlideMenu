@@ -38,7 +38,6 @@ static CGFloat MaxCoverAlpha = 0.3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.multipleTouchEnabled = NO;
     _pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     _pan.delegate = self;
     [self.view addGestureRecognizer:_pan];
@@ -50,8 +49,6 @@ static CGFloat MaxCoverAlpha = 0.3;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
     [_coverView addGestureRecognizer:tap];
     [_rootViewController.view addSubview:_coverView];
-    
-    [self.view.window endEditing:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

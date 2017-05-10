@@ -22,6 +22,7 @@
 		5EB25D901EC2A08C000CE892 /* navbarBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D8B1EC2A08C000CE892 /* navbarBackImage.png */; };
 		5EB25D911EC2A08C000CE892 /* QQChatList.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D8C1EC2A08C000CE892 /* QQChatList.png */; };
 		5EB25D921EC2A08C000CE892 /* QQLeftMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D8D1EC2A08C000CE892 /* QQLeftMenu.png */; };
+		5EB25D951EC2F17E000CE892 /* RightCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB25D941EC2F17E000CE892 /* RightCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		5EB25D8B1EC2A08C000CE892 /* navbarBackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbarBackImage.png; sourceTree = "<group>"; };
 		5EB25D8C1EC2A08C000CE892 /* QQChatList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QQChatList.png; sourceTree = "<group>"; };
 		5EB25D8D1EC2A08C000CE892 /* QQLeftMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QQLeftMenu.png; sourceTree = "<group>"; };
+		5EB25D931EC2F17E000CE892 /* RightCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightCollectionViewCell.h; sourceTree = "<group>"; };
+		5EB25D941EC2F17E000CE892 /* RightCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				5EA480211EC0711500291174 /* LeftViewController.m */,
 				5EA480231EC0711E00291174 /* RightViewController.h */,
 				5EA480241EC0711E00291174 /* RightViewController.m */,
+				5EB25D931EC2F17E000CE892 /* RightCollectionViewCell.h */,
+				5EB25D941EC2F17E000CE892 /* RightCollectionViewCell.m */,
 				5EA4800E1EC06C6200291174 /* Main.storyboard */,
 				5EA480111EC06C6200291174 /* Assets.xcassets */,
 				5EA480131EC06C6200291174 /* LaunchScreen.storyboard */,
@@ -208,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EA4800D1EC06C6200291174 /* ViewController.m in Sources */,
+				5EB25D951EC2F17E000CE892 /* RightCollectionViewCell.m in Sources */,
 				5EA480221EC0711500291174 /* LeftViewController.m in Sources */,
 				5EA4800A1EC06C6200291174 /* AppDelegate.m in Sources */,
 				5EA4801F1EC06C9F00291174 /* XLSlideMenu.m in Sources */,

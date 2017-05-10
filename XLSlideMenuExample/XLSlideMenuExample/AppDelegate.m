@@ -32,8 +32,9 @@
     LeftViewController *leftVC = [[LeftViewController alloc] init];
     //右侧菜单
     RightViewController *rightVC = [[RightViewController alloc] init];
-    //滑动菜单
+    //创建滑动菜单
     XLSlideMenu *slideMenu = [[XLSlideMenu alloc] initWithRootViewController:rootNav];
+    //设置左右菜单
     slideMenu.leftViewController = leftVC;
     slideMenu.rightViewController = rightVC;
     self.window.rootViewController = slideMenu;

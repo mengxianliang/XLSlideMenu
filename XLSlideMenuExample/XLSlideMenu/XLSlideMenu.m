@@ -149,7 +149,7 @@ static CGFloat MaxCoverAlpha = 0.3;
         [self updateRightMenuFrame];
         //更新遮罩层的透明度
         _coverView.hidden = false;
-        _coverView.alpha = (1 - CGRectGetMaxX(_rootViewController.view.frame)/self.self.menuWidth) * MaxCoverAlpha;
+        _coverView.alpha = (CGRectGetMaxX(self.view.frame) - CGRectGetMaxX(_rootViewController.view.frame))/self.menuWidth * MaxCoverAlpha;
     }
 }
 

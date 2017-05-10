@@ -13,13 +13,13 @@
 
 ### 1、创建方法：
 
-#### 导入头文件：
+#### (1)导入头文件：
 
 ```objc
 #import "XLSlideMenu.h"
 ```
 
-#### 创建菜单并设置成window的rootviewControler
+#### (2)创建菜单并设置成window的rootviewControler
 
 ```objc
     //创建滑动菜单
@@ -32,29 +32,40 @@
 
 ### 2、使用方法：
 
-#### 显示左菜单
+#### (1)显示左菜单
 ```objc
-#import "XLSlideMenu.h"
+[self.xl_sldeMenu showLeftViewControllerAnimated:true];
 ```
-#### 显示右菜单
+#### (2)显示右菜单
 ```objc
-#import "XLSlideMenu.h"
+[self.xl_sldeMenu showRightViewControllerAnimated:true];
 ```
-#### 显示主界面
+#### (3)显示主界面
 ```objc
-#import "XLSlideMenu.h"
+[self.xl_sldeMenu showRootViewControllerAnimated:true];
 ```
-#### 获取菜单宽度
+#### (4)获取菜单宽度
 ```objc
-#import "XLSlideMenu.h"
+self.xl_sldeMenu.menuWidth
 ```
-#### 获取留白宽度
+#### (5)获取留白宽度
 ```objc
-#import "XLSlideMenu.h"
+self.xl_sldeMenu.emptyWidth
 ```
-#### 跳转新界面
+#### (6)关闭滑动功能
 ```objc
-#import "XLSlideMenu.h"
+self.xl_sldeMenu.slideEnabled = false;
 ```
-
-
+#### (7)跳转新界面
+* 判断RootViewController类型
+* 第一种情况：如果是UINavigationController就直接push
+```objc
+UINavigationController *nav = (UINavigationController *)self.xl_sldeMenu.rootViewController;
+[nav pushViewController:newVc animated:false];
+```
+* 第二种情况：如果是Tabbar就找到Tabbar的selectedViewController执行Push动作
+```objc
+UITabBarController *tabBarController = (UITabBarController *)self.xl_sldeMenu.rootViewController;
+UINavigationController *nav = (UINavigationController *)tabBarController.selectedViewController;
+[nav pushViewController:newVc animated:true];
+```

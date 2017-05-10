@@ -13,7 +13,7 @@ static CGFloat MenuWidthScale = 0.8f;
 //遮罩层最高透明度
 static CGFloat MaxCoverAlpha = 0.3;
 
-@interface XLSlideMenu (){
+@interface XLSlideMenu ()<UIGestureRecognizerDelegate>{
     //记录起始位置
     CGPoint _originalPoint;
     //遮罩view
@@ -38,8 +38,10 @@ static CGFloat MaxCoverAlpha = 0.3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.multipleTouchEnabled = NO;
     _pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-    [_rootViewController.view addGestureRecognizer:_pan];
+    _pan.delegate = self;
+    [self.view addGestureRecognizer:_pan];
     
     _coverView = [[UIView alloc] initWithFrame:self.view.bounds];
     _coverView.backgroundColor = [UIColor blackColor];
@@ -48,9 +50,12 @@ static CGFloat MaxCoverAlpha = 0.3;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
     [_coverView addGestureRecognizer:tap];
     [_rootViewController.view addSubview:_coverView];
+    
+    [self.view.window endEditing:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    
     [super viewDidAppear:animated];
     
     [self updateLeftMenuFrame];
@@ -110,6 +115,7 @@ static CGFloat MaxCoverAlpha = 0.3;
     }
 }
 
+
 //拖拽方法
 -(void)panChanged:(UIPanGestureRecognizer*)pan{
     //拖拽的距离
@@ -150,6 +156,41 @@ static CGFloat MaxCoverAlpha = 0.3;
     }
 }
 
+#pragma mark -
+#pragma mark PanDelegate
+//设置拖拽响应范围、设置Navigation子视图不可拖拽
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    //设置Navigation子视图不可拖拽
+    if ([_rootViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationController = (UINavigationController *)_rootViewController;
+        if (navigationController.viewControllers.count > 1 && navigationController.interactivePopGestureRecognizer.enabled) {
+            return NO;
+        }
+    }
+    //如果Tabbar的当前视图是UINavigationController，设置UINavigationController子视图不可拖拽
+    if ([_rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabbarController = (UITabBarController*)_rootViewController;
+        UINavigationController *navigationController = tabbarController.selectedViewController;
+        if ([navigationController isKindOfClass:[UINavigationController class]]) {
+            if (navigationController.viewControllers.count > 1 && navigationController.interactivePopGestureRecognizer.enabled) {
+                return NO;
+            }
+        }
+    }
+    //设置拖拽响应范围
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        //拖拽响应范围是距离边界是空白位置宽度
+        CGFloat actionWidth = [self emptyWidth];
+        CGPoint point = [touch locationInView:gestureRecognizer.view];
+        if (point.x <= actionWidth || point.x > self.view.bounds.size.width - actionWidth) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+    return YES;
+}
 
 -(void)tap{
     [self showRootViewControllerAnimated:true];

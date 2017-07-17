@@ -204,6 +204,7 @@ static CGFloat MaxCoverAlpha = 0.3;
         _rootViewController.view.frame = frame;
         
         [self updateLeftMenuFrame];
+        
         [self updateRightMenuFrame];
         
         _coverView.alpha = 0;

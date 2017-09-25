@@ -17,8 +17,8 @@
 		5EA480221EC0711500291174 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA480211EC0711500291174 /* LeftViewController.m */; };
 		5EA480251EC0711E00291174 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA480241EC0711E00291174 /* RightViewController.m */; };
 		5EA480281EC0733300291174 /* UIViewController+XLSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA480271EC0733300291174 /* UIViewController+XLSlideMenu.m */; };
-		5EB25D8E1EC2A08C000CE892 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D891EC2A08C000CE892 /* header.png */; };
-		5EB25D8F1EC2A08C000CE892 /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D8A1EC2A08C000CE892 /* more.png */; };
+		5EB25D8E1EC2A08C000CE892 /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D891EC2A08C000CE892 /* header@2x.png */; };
+		5EB25D8F1EC2A08C000CE892 /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D8A1EC2A08C000CE892 /* more@2x.png */; };
 		5EB25D901EC2A08C000CE892 /* navbarBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D8B1EC2A08C000CE892 /* navbarBackImage.png */; };
 		5EB25D911EC2A08C000CE892 /* QQChatList.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D8C1EC2A08C000CE892 /* QQChatList.png */; };
 		5EB25D921EC2A08C000CE892 /* QQLeftMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB25D8D1EC2A08C000CE892 /* QQLeftMenu.png */; };
@@ -44,8 +44,8 @@
 		5EA480241EC0711E00291174 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
 		5EA480261EC0733300291174 /* UIViewController+XLSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XLSlideMenu.h"; sourceTree = "<group>"; };
 		5EA480271EC0733300291174 /* UIViewController+XLSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XLSlideMenu.m"; sourceTree = "<group>"; };
-		5EB25D891EC2A08C000CE892 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
-		5EB25D8A1EC2A08C000CE892 /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
+		5EB25D891EC2A08C000CE892 /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
+		5EB25D8A1EC2A08C000CE892 /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
 		5EB25D8B1EC2A08C000CE892 /* navbarBackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbarBackImage.png; sourceTree = "<group>"; };
 		5EB25D8C1EC2A08C000CE892 /* QQChatList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QQChatList.png; sourceTree = "<group>"; };
 		5EB25D8D1EC2A08C000CE892 /* QQLeftMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QQLeftMenu.png; sourceTree = "<group>"; };
@@ -126,8 +126,8 @@
 		5EB25D881EC2A08C000CE892 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				5EB25D891EC2A08C000CE892 /* header.png */,
-				5EB25D8A1EC2A08C000CE892 /* more.png */,
+				5EB25D891EC2A08C000CE892 /* header@2x.png */,
+				5EB25D8A1EC2A08C000CE892 /* more@2x.png */,
 				5EB25D8B1EC2A08C000CE892 /* navbarBackImage.png */,
 				5EB25D8C1EC2A08C000CE892 /* QQChatList.png */,
 				5EB25D8D1EC2A08C000CE892 /* QQLeftMenu.png */,
@@ -198,9 +198,9 @@
 				5EA480151EC06C6200291174 /* LaunchScreen.storyboard in Resources */,
 				5EB25D911EC2A08C000CE892 /* QQChatList.png in Resources */,
 				5EB25D921EC2A08C000CE892 /* QQLeftMenu.png in Resources */,
-				5EB25D8F1EC2A08C000CE892 /* more.png in Resources */,
+				5EB25D8F1EC2A08C000CE892 /* more@2x.png in Resources */,
 				5EA480121EC06C6200291174 /* Assets.xcassets in Resources */,
-				5EB25D8E1EC2A08C000CE892 /* header.png in Resources */,
+				5EB25D8E1EC2A08C000CE892 /* header@2x.png in Resources */,
 				5EA480101EC06C6200291174 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

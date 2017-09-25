@@ -12,6 +12,8 @@
 static CGFloat MenuWidthScale = 0.8f;
 //遮罩层最高透明度
 static CGFloat MaxCoverAlpha = 0.3;
+//快速滑动最小触发速度
+static CGFloat MinActionSpeed = 500;
 
 @interface XLSlideMenu ()<UIGestureRecognizerDelegate>{
     //记录起始位置
@@ -96,15 +98,9 @@ static CGFloat MaxCoverAlpha = 0.3;
         case UIGestureRecognizerStateChanged:
             [self panChanged:pan];
             break;
-            //滑动结束后自动归位
         case UIGestureRecognizerStateEnded:
-            if (CGRectGetMinX(_rootViewController.view.frame) > self.menuWidth/2) {
-                [self showLeftViewControllerAnimated:true];
-            }else if (CGRectGetMaxX(_rootViewController.view.frame) < self.menuWidth/2 + self.emptyWidth){
-                [self showRightViewControllerAnimated:true];
-            }else{
-                [self showRootViewControllerAnimated:true];
-            }
+            //滑动结束后自动归位
+            [self panEnd:pan];
             break;
             
         default:
@@ -151,6 +147,50 @@ static CGFloat MaxCoverAlpha = 0.3;
         _coverView.hidden = false;
         _coverView.alpha = (CGRectGetMaxX(self.view.frame) - CGRectGetMaxX(_rootViewController.view.frame))/self.menuWidth * MaxCoverAlpha;
     }
+}
+
+//拖拽结束
+- (void)panEnd:(UIPanGestureRecognizer*)pan {
+    
+    //处理快速滑动
+    CGFloat speedX = [pan velocityInView:pan.view].x;
+    if (ABS(speedX) > MinActionSpeed) {
+        [self dealWithFastSliding:speedX];
+        return;
+    }
+    //正常速度
+    if (CGRectGetMinX(_rootViewController.view.frame) > self.menuWidth/2) {
+        [self showLeftViewControllerAnimated:true];
+    }else if (CGRectGetMaxX(_rootViewController.view.frame) < self.menuWidth/2 + self.emptyWidth){
+        [self showRightViewControllerAnimated:true];
+    }else{
+        [self showRootViewControllerAnimated:true];
+    }
+}
+
+//处理快速滑动
+- (void)dealWithFastSliding:(CGFloat)speedX {
+    //向左滑动
+    BOOL swipeRight = speedX > 0;
+    //向右滑动
+    BOOL swipeLeft = speedX < 0;
+    //rootViewController的左边缘位置
+    CGFloat roootX = CGRectGetMinX(_rootViewController.view.frame);
+    if (swipeRight) {//向右滑动
+        if (roootX > 0) {//显示左菜单
+            [self showLeftViewControllerAnimated:true];
+        }else if (roootX < 0){//显示主菜单
+            [self showRootViewControllerAnimated:true];
+        }
+    }
+    if (swipeLeft) {//向左滑动
+        if (roootX < 0) {//显示右菜单
+            [self showRightViewControllerAnimated:true];
+        }else if (roootX > 0){//显示主菜单
+            [self showRootViewControllerAnimated:true];
+        }
+    }
+    return;
 }
 
 #pragma mark -

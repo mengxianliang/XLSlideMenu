@@ -11,7 +11,7 @@
 
 @implementation UIViewController (XLSlideMenu)
 
--(XLSlideMenu *)xl_sldeMenu{
+- (XLSlideMenu *)xl_sldeMenu {
     UIViewController *sldeMenu = self.parentViewController;
     while (sldeMenu) {
         if ([sldeMenu isKindOfClass:[XLSlideMenu class]]) {

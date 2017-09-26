@@ -200,8 +200,7 @@ static CGFloat MinActionSpeed = 500;
 #pragma mark -
 #pragma mark PanDelegate
 //设置拖拽响应范围、设置Navigation子视图不可拖拽
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     //设置Navigation子视图不可拖拽
     if ([_rootViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *navigationController = (UINavigationController *)_rootViewController;
@@ -233,7 +232,7 @@ static CGFloat MinActionSpeed = 500;
     return YES;
 }
 
--(void)tap{
+- (void)tap {
     [self showRootViewControllerAnimated:true];
 }
 
@@ -253,8 +252,9 @@ static CGFloat MinActionSpeed = 500;
         _coverView.hidden = true;
     }];
 }
+
 //显示左侧菜单
--(void)showLeftViewControllerAnimated:(BOOL)animated{
+- (void)showLeftViewControllerAnimated:(BOOL)animated {
     if (!_leftViewController) {return;}
     [self.view sendSubviewToBack:_rightViewController.view];
     _coverView.hidden = false;
@@ -266,7 +266,7 @@ static CGFloat MinActionSpeed = 500;
 }
 
 //显示右侧菜单
--(void)showRightViewControllerAnimated:(BOOL)animated{
+- (void)showRightViewControllerAnimated:(BOOL)animated {
     if (!_rightViewController) {return;}
     _coverView.hidden = false;
     [self.view sendSubviewToBack:_leftViewController.view];
@@ -280,7 +280,7 @@ static CGFloat MinActionSpeed = 500;
 #pragma mark -
 #pragma mark 其它方法
 //更新左侧菜单位置
--(void)updateLeftMenuFrame{
+- (void)updateLeftMenuFrame {
     _leftViewController.view.center = CGPointMake(CGRectGetMinX(_rootViewController.view.frame)/2, _leftViewController.view.center.y);
 }
 

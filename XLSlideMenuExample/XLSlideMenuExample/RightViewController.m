@@ -7,7 +7,6 @@
 //  GitHub:https://github.com/mengxianliang/XLSlideMenu
 
 #import "RightViewController.h"
-#import "RightCollectionViewCell.h"
 #import "XLSlideMenu.h"
 
 @interface RightViewController ()<UITableViewDelegate,UITableViewDataSource> {
@@ -87,7 +86,6 @@
             self.xl_sldeMenu.slideEnabled = !self.xl_sldeMenu.slideEnabled;
             [tableView reloadData];
             break;
-            
         default:
             break;
     }
@@ -100,8 +98,8 @@
 }
 
 - (NSArray *)subTitles {
-    NSString *title4 = self.xl_sldeMenu.slideEnabled ? @"已打开" : @"已关闭" ;
-    return @[@"",@"",@"",@"",title4];
+    NSString *subTitle = self.xl_sldeMenu.slideEnabled ? @"已打开" : @"已关闭" ;
+    return @[@"",@"",@"",@"",subTitle];
 }
 
 - (void)didReceiveMemoryWarning {

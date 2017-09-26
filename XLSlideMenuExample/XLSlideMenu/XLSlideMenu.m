@@ -40,6 +40,8 @@ static CGFloat MinActionSpeed = 500;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     _pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     _pan.delegate = self;
     [self.view addGestureRecognizer:_pan];
@@ -67,6 +69,7 @@ static CGFloat MinActionSpeed = 500;
 
 -(void)setLeftViewController:(UIViewController *)leftViewController{
     _leftViewController = leftViewController;
+    _leftViewController.view.frame = CGRectMake(0, 0, [self menuWidth], self.view.bounds.size.height);
     [self addChildViewController:_leftViewController];
     [self.view insertSubview:_leftViewController.view atIndex:0];
     [_leftViewController didMoveToParentViewController:self];
@@ -74,6 +77,7 @@ static CGFloat MinActionSpeed = 500;
 
 -(void)setRightViewController:(UIViewController *)rightViewController{
     _rightViewController = rightViewController;
+    _rightViewController.view.frame = CGRectMake([self emptyWidth], 0, [self menuWidth], self.view.bounds.size.height);
     [self addChildViewController:_rightViewController];
     [self.view insertSubview:_rightViewController.view atIndex:0];
     [_rightViewController didMoveToParentViewController:self];
@@ -242,11 +246,8 @@ static CGFloat MinActionSpeed = 500;
         CGRect frame = _rootViewController.view.frame;
         frame.origin.x = 0;
         _rootViewController.view.frame = frame;
-        
         [self updateLeftMenuFrame];
-        
         [self updateRightMenuFrame];
-        
         _coverView.alpha = 0;
     }completion:^(BOOL finished) {
         _coverView.hidden = true;
@@ -259,10 +260,11 @@ static CGFloat MinActionSpeed = 500;
     _coverView.hidden = false;
     [UIView animateWithDuration:[self animationDurationAnimated:animated] animations:^{
         _rootViewController.view.center = CGPointMake(_rootViewController.view.bounds.size.width/2 + self.menuWidth, _rootViewController.view.center.y);
-        _leftViewController.view.frame = self.view.bounds;
+        _leftViewController.view.frame = CGRectMake(0, 0, [self menuWidth], self.view.bounds.size.height);
         _coverView.alpha = MaxCoverAlpha;
     }];
 }
+
 //显示右侧菜单
 -(void)showRightViewControllerAnimated:(BOOL)animated{
     if (!_rightViewController) {return;}
@@ -270,7 +272,7 @@ static CGFloat MinActionSpeed = 500;
     [self.view sendSubviewToBack:_leftViewController.view];
     [UIView animateWithDuration:[self animationDurationAnimated:animated] animations:^{
         _rootViewController.view.center = CGPointMake(_rootViewController.view.bounds.size.width/2 - self.menuWidth, _rootViewController.view.center.y);
-        _rightViewController.view.frame = self.view.bounds;
+        _rightViewController.view.frame = CGRectMake([self emptyWidth], 0, [self menuWidth], self.view.bounds.size.height);
         _coverView.alpha = MaxCoverAlpha;
     }];
 }
@@ -279,28 +281,34 @@ static CGFloat MinActionSpeed = 500;
 #pragma mark 其它方法
 //更新左侧菜单位置
 -(void)updateLeftMenuFrame{
-    _leftViewController.view.center = CGPointMake((CGRectGetMinX(_rootViewController.view.frame) + self.emptyWidth)/2, _leftViewController.view.center.y);
+    _leftViewController.view.center = CGPointMake(CGRectGetMinX(_rootViewController.view.frame)/2, _leftViewController.view.center.y);
 }
+
 //更新右侧菜单位置
--(void)updateRightMenuFrame{
-    _rightViewController.view.center = CGPointMake((self.view.bounds.size.width + CGRectGetMaxX(_rootViewController.view.frame) - self.emptyWidth)/2, _rightViewController.view.center.y);
+- (void)updateRightMenuFrame {
+    _rightViewController.view.center = CGPointMake((self.view.bounds.size.width + CGRectGetMaxX(_rootViewController.view.frame))/2, _rightViewController.view.center.y);
 }
+
 //菜单宽度
--(CGFloat)menuWidth{
+- (CGFloat)menuWidth {
     return MenuWidthScale * self.view.bounds.size.width;
 }
+
 //空白宽度
--(CGFloat)emptyWidth{
+- (CGFloat)emptyWidth {
     return self.view.bounds.size.width - self.menuWidth;
 }
+
 //动画时长
--(CGFloat)animationDurationAnimated:(BOOL)animated{
+- (CGFloat)animationDurationAnimated:(BOOL)animated {
     return animated ? 0.25 : 0;
 }
+
 //取消自动旋转
--(BOOL)shouldAutorotate{
+- (BOOL)shouldAutorotate {
     return false;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

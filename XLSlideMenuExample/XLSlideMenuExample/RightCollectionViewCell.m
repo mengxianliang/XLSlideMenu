@@ -13,7 +13,7 @@
     UITextView *_textView;
 }
 
--(instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self buildUI];
     }
@@ -21,8 +21,7 @@
 }
 
 
--(void)buildUI{
-    
+- (void)buildUI {
     self.layer.borderWidth = 1.50f;
     self.layer.cornerRadius = 5.0f;
     self.layer.borderColor = [UIColor colorWithRed:209/255.0f green:213/255.0f blue:218/255.0f alpha:1].CGColor;
@@ -39,11 +38,11 @@
     [self.contentView addSubview:_textView];
 }
 
--(void)setTitle:(NSString *)title{
+- (void)setTitle:(NSString *)title {
     _titleLabel.text = title;
 }
 
--(void)setSubTitle:(NSString *)subTitle{
+- (void)setSubTitle:(NSString *)subTitle {
     _textView.text = subTitle;
 }
 

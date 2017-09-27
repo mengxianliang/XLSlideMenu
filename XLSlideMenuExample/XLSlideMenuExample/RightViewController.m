@@ -20,14 +20,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     _tableView = [[UITableView alloc] init];
+    _tableView.frame = self.view.bounds;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    _tableView.frame = self.view.bounds;
 }
 
 #pragma mark -

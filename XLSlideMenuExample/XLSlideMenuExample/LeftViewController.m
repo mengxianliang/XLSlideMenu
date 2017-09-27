@@ -19,12 +19,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"QQLeftMenu"]];
-    [self.view addSubview:_imageView];
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
     _imageView.frame = self.view.bounds;
+    [self.view addSubview:_imageView];
 }
 
 - (void)didReceiveMemoryWarning {

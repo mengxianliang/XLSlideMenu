@@ -69,7 +69,10 @@ static CGFloat MinActionSpeed = 500;
 
 -(void)setLeftViewController:(UIViewController *)leftViewController{
     _leftViewController = leftViewController;
-    _leftViewController.view.frame = CGRectMake(0, 0, [self menuWidth], self.view.bounds.size.height);
+    //提前设置ViewController的viewframe，为了懒加载view造成的frame问题，所以通过setter设置了新的view
+    _leftViewController.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self menuWidth], self.view.bounds.size.height)];
+    //自定义View需要主动调用viewDidLoad
+    [_leftViewController viewDidLoad];
     [self addChildViewController:_leftViewController];
     [self.view insertSubview:_leftViewController.view atIndex:0];
     [_leftViewController didMoveToParentViewController:self];
@@ -77,7 +80,10 @@ static CGFloat MinActionSpeed = 500;
 
 -(void)setRightViewController:(UIViewController *)rightViewController{
     _rightViewController = rightViewController;
-    _rightViewController.view.frame = CGRectMake([self emptyWidth], 0, [self menuWidth], self.view.bounds.size.height);
+    //提前设置ViewController的viewframe，为了懒加载view造成的frame问题，所以通过setter设置了新的view
+    _rightViewController.view = [[UIView alloc] initWithFrame:CGRectMake([self emptyWidth], 0, [self menuWidth], self.view.bounds.size.height)];
+    //自定义View需要主动调用viewDidLoad
+    [_rightViewController viewDidLoad];
     [self addChildViewController:_rightViewController];
     [self.view insertSubview:_rightViewController.view atIndex:0];
     [_rightViewController didMoveToParentViewController:self];

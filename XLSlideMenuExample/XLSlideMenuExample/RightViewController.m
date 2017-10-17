@@ -93,7 +93,7 @@
 }
 
 - (NSArray *)subTitles {
-    NSString *subTitle = self.xl_sldeMenu.slideEnabled ? @"已打开" : @"已关闭" ;
+    NSString *subTitle = self.xl_sldeMenu.slideEnabled ? @"(已打开)" : @"(已关闭)" ;
     return @[@"",@"",@"",@"",subTitle];
 }
 

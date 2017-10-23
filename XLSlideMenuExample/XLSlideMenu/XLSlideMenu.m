@@ -18,11 +18,13 @@ static CGFloat MinActionSpeed = 500;
 @interface XLSlideMenu ()<UIGestureRecognizerDelegate>{
     //记录起始位置
     CGPoint _originalPoint;
-    //遮罩view
-    UIView *_coverView;
-    //拖拽手势
-    UIPanGestureRecognizer *_pan;
 }
+
+//遮罩view
+@property (nonatomic, strong) UIView *coverView;
+//拖拽手势
+@property (nonatomic, strong) UIPanGestureRecognizer *pan;
+
 @end
 
 @implementation XLSlideMenu
@@ -147,6 +149,7 @@ static CGFloat MinActionSpeed = 500;
         [self updateLeftMenuFrame];
         //更新遮罩层的透明度
         _coverView.hidden = false;
+        [_rootViewController.view bringSubviewToFront:_coverView];
         _coverView.alpha = CGRectGetMinX(_rootViewController.view.frame)/self.menuWidth * MaxCoverAlpha;
     }else if (CGRectGetMinX(_rootViewController.view.frame) < 0){
         //显示右菜单
@@ -155,6 +158,7 @@ static CGFloat MinActionSpeed = 500;
         [self updateRightMenuFrame];
         //更新遮罩层的透明度
         _coverView.hidden = false;
+        [_rootViewController.view bringSubviewToFront:_coverView];
         _coverView.alpha = (CGRectGetMaxX(self.view.frame) - CGRectGetMaxX(_rootViewController.view.frame))/self.menuWidth * MaxCoverAlpha;
     }
 }
@@ -264,6 +268,7 @@ static CGFloat MinActionSpeed = 500;
     if (!_leftViewController) {return;}
     [self.view sendSubviewToBack:_rightViewController.view];
     _coverView.hidden = false;
+    [_rootViewController.view bringSubviewToFront:_coverView];
     [UIView animateWithDuration:[self animationDurationAnimated:animated] animations:^{
         _rootViewController.view.center = CGPointMake(_rootViewController.view.bounds.size.width/2 + self.menuWidth, _rootViewController.view.center.y);
         _leftViewController.view.frame = CGRectMake(0, 0, [self menuWidth], self.view.bounds.size.height);
@@ -275,6 +280,7 @@ static CGFloat MinActionSpeed = 500;
 - (void)showRightViewControllerAnimated:(BOOL)animated {
     if (!_rightViewController) {return;}
     _coverView.hidden = false;
+    [_rootViewController.view bringSubviewToFront:_coverView];
     [self.view sendSubviewToBack:_leftViewController.view];
     [UIView animateWithDuration:[self animationDurationAnimated:animated] animations:^{
         _rootViewController.view.center = CGPointMake(_rootViewController.view.bounds.size.width/2 - self.menuWidth, _rootViewController.view.center.y);

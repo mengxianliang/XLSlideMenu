@@ -4,6 +4,11 @@
 
 - [x] 滑动显示左右菜单（支持快速滑动）
 - [x] 调用方法显示左右菜单
+- [x] 支持UINavigationController、UItabbarController，即UIViewController及其子类作为Window的根控制器
+- [x] 滑动区域为界面两侧，不会和界面中的滚动视图发生冲突，并可自定义相应区域大小
+- [x] 滑动只在NavigationController的个控制器显示时才会触发，其他自控制器不会触发菜单滑动方法
+* 示例图中的QQ界面只是截图
+
 
 ## 显示效果
 
